@@ -180,7 +180,7 @@ export default function Home() {
             noWrap
             className={classes.title}
           >
-            SHS Capture The Flag
+            Cararra Capture The Flag
           </Typography>
           <Typography
             component="h1"
