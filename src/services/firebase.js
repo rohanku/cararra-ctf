@@ -4,14 +4,13 @@ import "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyArKLgVWkpNio6gJRCGOw2fy4rrewPEM5g",
-  authDomain: "cs-club-competition-site.firebaseapp.com",
-  databaseURL: "https://cs-club-competition-site.firebaseio.com",
-  projectId: "cs-club-competition-site",
-  storageBucket: "cs-club-competition-site.appspot.com",
-  messagingSenderId: "258704633850",
-  appId: "1:258704633850:web:0f4900002d6c24fbf83e43",
-  measurementId: "G-5625DH6ES9",
+  apiKey: "AIzaSyA1ibbAUUiCS1n9vE0PChw0k5tCRwrgJI0",
+  authDomain: "cararra-ctf.firebaseapp.com",
+  projectId: "cararra-ctf",
+  storageBucket: "cararra-ctf.appspot.com",
+  messagingSenderId: "6526243120",
+  appId: "1:6526243120:web:de4aa75ec2acb977f2f8f5",
+  measurementId: "G-FX005C3LVW"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -21,9 +20,9 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 export const getBot = () => {
   let xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("POST", "https://tranquil-atoll-39338.herokuapp.com/", true);
+  xmlHttp.open("POST", "https://cararra-ctf-submissions-bot.herokuapp.com/", true);
   xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-  xmlHttp.send(null);
+  //xmlHttp.send(null);
 };
 
 export const signInWithGoogle = () => {
@@ -42,12 +41,11 @@ export const signOut = () => {
     });
 };
 
-export const addUser = (user, username, grade, emailList) => {
+export const addUser = (user, username, emailList) => {
   getBot();
   db.collection("users").doc(user.uid).set({
     username: username,
     fullName: user.displayName,
-    grade: grade,
     emailList: emailList,
     createdTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
   });

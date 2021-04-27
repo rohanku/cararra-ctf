@@ -13,8 +13,8 @@ import Grid from "@material-ui/core/Grid";
 import { CircularProgress } from "@material-ui/core";
 
 // Generate Order Data
-function createData(id, rank, name, grade, score) {
-  return { id, rank, name, grade, score };
+function createData(id, rank, name, score) {
+  return { id, rank, name, score };
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +48,7 @@ export default function Leaderboard() {
       currScore = user.score;
     }
     rows.push(
-      createData(index, currRank, user.username, user.grade, user.score)
+      createData(index, currRank, user.username, user.score)
     );
   });
   rows = rows.slice(0, 15);
@@ -74,7 +74,6 @@ export default function Leaderboard() {
               <TableRow>
                 <TableCell>Rank</TableCell>
                 <TableCell>Username</TableCell>
-                <TableCell>Grade</TableCell>
                 <TableCell align="right">Score</TableCell>
               </TableRow>
             </TableHead>
@@ -83,13 +82,11 @@ export default function Leaderboard() {
                 <TableRow key={row.id}>
                   <TableCell>{row.rank}</TableCell>
                   <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.grade}</TableCell>
                   <TableCell align="right">{row.score}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-          <div className={classes.seeMore}></div>
         </React.Fragment>
       </Paper>
     </Container>

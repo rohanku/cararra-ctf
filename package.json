@@ -1,5 +1,5 @@
 {
-  "name": "cs-club-competition-site",
+  "name": "cararra-ctf",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,12 +12,10 @@
     "core-js": "^3.6.5",
     "firebase": "^7.19.0",
     "fontsource-roboto": "^3.0.3",
-    "netlify-cli": "^2.59.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-jsx-parser": "^1.25.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.3",
     "recharts": "^1.8.5",
     "uuid": "^8.3.0"
   },

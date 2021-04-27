@@ -48,7 +48,7 @@ export default function Loading({ timeout, children }) {
             <FlagIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            SHS Capture The Flag
+            Cararra CTF
           </Typography>
           <CircularProgress className={classes.submit} />
         </div>

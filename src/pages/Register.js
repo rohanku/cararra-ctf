@@ -12,7 +12,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Copyright from "../components/Copyright";
-import MenuItem from "@material-ui/core/MenuItem";
 import { addUser } from "../services/firebase";
 import { UserContext } from "../providers/UserProvider";
 import FlagIcon from "@material-ui/icons/Flag";
@@ -37,29 +36,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const grades = [
-  {
-    value: 9,
-    label: "9",
-  },
-  {
-    value: 10,
-    label: "10",
-  },
-  {
-    value: 11,
-    label: "11",
-  },
-  {
-    value: 12,
-    label: "12",
-  },
-];
-
 export default function Register() {
   const classes = useStyles();
   const [username, setUsername] = useState("");
-  const [grade, setGrade] = useState(9);
   const [emailList, setEmailList] = useState(false);
   const userState = useContext(UserContext);
   if (userState.doc && userState.doc.exists) {
@@ -81,7 +60,7 @@ export default function Register() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={9}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -94,23 +73,6 @@ export default function Register() {
                 autoComplete="username"
               />
             </Grid>
-            <Grid item xs={3}>
-              <TextField
-                id="grade"
-                variant="outlined"
-                select
-                label="Grade"
-                onChange={(event) => setGrade(event.target.value)}
-                value={grade}
-                style={{ width: "100%" }}
-              >
-                {grades.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={
@@ -120,7 +82,7 @@ export default function Register() {
                     color="primary"
                   />
                 }
-                label="I want to receive inspiration, resources and updates via email."
+                label="I would like to receive email notifications."
                 style={{ textAlign: "left" }}
               />
             </Grid>
@@ -131,7 +93,7 @@ export default function Register() {
             color="primary"
             className={classes.submit}
             onClick={() => {
-              addUser(userState.user, username, grade, emailList);
+              addUser(userState.user, username, emailList);
             }}
           >
             Register

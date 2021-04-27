@@ -1,3 +1,2 @@
-# cs-club-website (competition site)
+# cararra-ctf
 
-[ctf.shscsclub.com](https://ctf.shscsclub.com)

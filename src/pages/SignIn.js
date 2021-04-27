@@ -41,10 +41,10 @@ export default function SignIn() {
           <FlagIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          SHS Capture The Flag
+          Cararra CTF
         </Typography>
         <Typography color="textSecondary">
-          Sign in to access our challenges!
+          Sign in to access daily CS challenges!
         </Typography>
         <Button
           type="submit"
