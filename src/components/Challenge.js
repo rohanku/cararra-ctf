@@ -147,7 +147,7 @@ export default function Challenge({
             >
               <InputBase
                 className={classes.input}
-                placeholder="Enter flag: shscs{...}"
+                placeholder="Enter flag: cararraCTF{...}"
                 inputProps={{ "aria-label": "flag" }}
                 onChange={handleChange}
                 value={value}
