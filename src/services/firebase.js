@@ -1,7 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { v4 as uuidv4 } from "uuid";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA1ibbAUUiCS1n9vE0PChw0k5tCRwrgJI0",
@@ -22,7 +21,7 @@ export const getBot = () => {
   let xmlHttp = new XMLHttpRequest();
   xmlHttp.open("POST", "https://cararra-ctf-submissions-bot.herokuapp.com/", true);
   xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-  //xmlHttp.send(null);
+  xmlHttp.send(null);
 };
 
 export const signInWithGoogle = () => {
@@ -55,11 +54,9 @@ export const addUser = (user, username, emailList) => {
 export const submitFlag = (user, problem, flag) => {
   getBot();
   let updateMap = {};
-  let uuid = uuidv4();
-  updateMap[uuid] = {
+  updateMap[problem] = {
     problem: problem,
     flag: flag,
   };
   db.collection("submissions").doc(user.uid).update(updateMap);
-  return uuid;
 };

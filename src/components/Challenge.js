@@ -83,12 +83,12 @@ export default function Challenge({
   };
   const handleSubmit = (event, user, problem, flag) => {
     event.preventDefault();
-    let uuid = submitFlag(user, problem, flag);
+    submitFlag(user, problem, flag);
     setValue("");
     setWaiting(true);
     let path = `users/${user.uid}/submissions`;
     db.collection(path)
-      .doc(uuid)
+      .doc(problem)
       .onSnapshot((doc) => {
         if (doc && doc.exists) {
           setTimeout(() => {
@@ -99,9 +99,9 @@ export default function Challenge({
           } else {
             onFail(name);
           }
-          db.collection(path).doc(uuid).delete();
+          db.collection(path).doc(problem).delete();
           db.collection(path)
-            .doc(uuid)
+            .doc(problem)
             .onSnapshot(() => {});
         }
       });
