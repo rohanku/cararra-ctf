@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Leaderboard() {
   const users = Object.values(useContext(LeaderboardContext).users);
   users.sort(function (x, y) {
+    if (y.score === x.score && x.solvedChallenges.length > 0) {
+      return x.solvedChallenges[x.solvedChallenges.length - 1].timestamp - y.solvedChallenges[y.solvedChallenges.length - 1].timestamp;
+    }
     return y.score - x.score;
   });
   let rows = [];
