@@ -49,8 +49,9 @@ export default function Leaderboard() {
       currRank += 1;
       currScore = user.score;
     }
+    // replace index+1 with currRank to have same rank with ties
     rows.push(
-      createData(index, currRank, user.username, user.score)
+      createData(index, index+1, user.username, user.score)
     );
   });
   rows = rows.slice(0, 15);
