@@ -42,14 +42,16 @@ export default function Leaderboard() {
     return y.score - x.score;
   });
   let rows = [];
-  let currScore = 1000000000;
-  let currRank = 0;
+  //let currScore = 1000000000;
+  //let currRank = 0;
   users.forEach((user, index) => {
+    /*
     if (user.score < currScore) {
       currRank += 1;
       currScore = user.score;
     }
-    // replace index+1 with currRank to have same rank with ties
+    replace index+1 with currRank to have same rank with ties
+    */
     rows.push(
       createData(index, index+1, user.username, user.score)
     );
