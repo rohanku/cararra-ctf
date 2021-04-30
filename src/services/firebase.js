@@ -22,6 +22,9 @@ export const getBot = () => {
   xmlHttp.open("POST", "https://cararra-ctf-submissions-bot.herokuapp.com/", true);
   xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
   xmlHttp.send(null);
+  xmlHttp.open("POST", "https://cararra-ctf-files.herokuapp.com/", true);
+  xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+  xmlHttp.send(null);
 };
 
 export const signInWithGoogle = () => {
