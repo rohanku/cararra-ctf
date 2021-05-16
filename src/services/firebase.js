@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-export const round = 1;
+export const round = 2;
 
 const firebaseConfig = {
     apiKey: "AIzaSyA1ibbAUUiCS1n9vE0PChw0k5tCRwrgJI0",
