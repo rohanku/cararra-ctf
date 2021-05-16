@@ -20,7 +20,7 @@ class LeaderboardProvider extends Component {
         let doc = change.doc;
         let data = doc.data();
         if (data.username === "DefyGG") {
-        console.log(data);
+          console.log(data);
         }
         this.setState((state) => {
           state.users[doc.id] = data;

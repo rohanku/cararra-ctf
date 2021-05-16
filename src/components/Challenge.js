@@ -51,7 +51,7 @@ function RelevantLinks({ links }) {
             comma = "";
           }
           return (
-            <React.Fragment key={index} >
+            <React.Fragment key={index}>
               <Link component="a" href={link.url}>
                 {link.link}
               </Link>
