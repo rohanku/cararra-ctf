@@ -67,6 +67,8 @@ export default function Leaderboard() {
     }
     replace index+1 with currRank to have same rank with ties
     */
+    if (user.score === 0)
+      return;
     rows.push(
       createData(index, index+1, user.username, user.score, user.uid)
     );
