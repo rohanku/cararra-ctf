@@ -56,7 +56,7 @@ export default function Register() {
           SHS Capture The Flag
         </Typography>
         <Typography color="textSecondary">
-          Register with your username and grade.
+          Register with your username.
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
