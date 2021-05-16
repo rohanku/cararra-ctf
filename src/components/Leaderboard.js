@@ -96,7 +96,7 @@ export default function Leaderboard() {
     if (user.score === 0)
       return;
       winnerrows.push(
-        createData(index, index+1, user.username, user.score, user.uid)
+        createData(index, index+1, user.username, user.finalScore, user.uid)
       );
     });
     winnerrows = winnerrows.slice(0, 5);
