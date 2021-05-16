@@ -11,7 +11,7 @@ import DirectionsIcon from "@material-ui/icons/Directions";
 import CheckCircleIcon from "@material-ui/icons/CheckCircleOutline";
 import { CircularProgress } from "@material-ui/core";
 import { UserContext } from "../providers/UserProvider";
-import { db, submitFlag } from "../services/firebase";
+import { db, round, submitFlag } from "../services/firebase";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -86,7 +86,7 @@ export default function Challenge({
     submitFlag(user, problem, flag);
     setValue("");
     setWaiting(true);
-    let path = `users/${user.uid}/submissions`;
+    let path = `rounds/${round}/users/${user.uid}/submissions`;
     db.collection(path)
       .doc(problem)
       .onSnapshot((doc) => {
