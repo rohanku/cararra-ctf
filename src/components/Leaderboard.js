@@ -80,7 +80,7 @@ export default function Leaderboard() {
       if (y.finalScore === x.finalScore && x.solvedChallenges.length > 0) {
         return x.solvedChallenges[x.finalChallenge].timestamp - y.solvedChallenges[y.finalChallenge].timestamp;
       }
-      return y.score - x.score;
+      return y.finalScore - x.finalScore;
     });
 
     //let currScore = 1000000000;
