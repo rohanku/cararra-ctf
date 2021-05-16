@@ -11,7 +11,7 @@ import DirectionsIcon from "@material-ui/icons/Directions";
 import CheckCircleIcon from "@material-ui/icons/CheckCircleOutline";
 import { CircularProgress } from "@material-ui/core";
 import { UserContext } from "../providers/UserProvider";
-import { db, round, submitFlag } from "../services/firebase";
+import { db, submitFlag, round } from "../services/firebase";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,8 +51,8 @@ function RelevantLinks({ links }) {
             comma = "";
           }
           return (
-            <React.Fragment>
-              <Link component="a" key={index} href={link.url}>
+            <React.Fragment key={index} >
+              <Link component="a" href={link.url}>
                 {link.link}
               </Link>
               {comma}
@@ -86,7 +86,7 @@ export default function Challenge({
     submitFlag(user, problem, flag);
     setValue("");
     setWaiting(true);
-    let path = `rounds/${round}/users/${user.uid}/submissions`;
+    let path = `users/${user.uid}/submissions/rounds/${round}`;
     db.collection(path)
       .doc(problem)
       .onSnapshot((doc) => {

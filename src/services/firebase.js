@@ -5,13 +5,13 @@ import "firebase/firestore";
 export const round = 1;
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAFis3Yqk15WrwDhsaFXEY97x5hPO7vutk",
-    authDomain: "cararra-ctf-2.firebaseapp.com",
-    projectId: "cararra-ctf-2",
-    storageBucket: "cararra-ctf-2.appspot.com",
-    messagingSenderId: "184543006158",
-    appId: "1:184543006158:web:61dccab08f5f2eac2c6f9f",
-    measurementId: "G-K27G5SJLZK"
+    apiKey: "AIzaSyA1ibbAUUiCS1n9vE0PChw0k5tCRwrgJI0",
+    authDomain: "cararra-ctf.firebaseapp.com",
+    projectId: "cararra-ctf",
+    storageBucket: "cararra-ctf.appspot.com",
+    messagingSenderId: "6526243120",
+    appId: "1:6526243120:web:de4aa75ec2acb977f2f8f5",
+    measurementId: "G-FX005C3LVW"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -47,7 +47,7 @@ export const signOut = () => {
 
 export const addUser = (user, username, emailList) => {
   getBot();
-  db.collection(`rounds/${round}/users`).doc(user.uid).set({
+  db.collection(`users`).doc(user.uid).set({
     username: username,
     fullName: user.displayName,
     emailList: emailList,
@@ -63,5 +63,5 @@ export const submitFlag = (user, problem, flag) => {
     problem: problem,
     flag: flag,
   };
-  db.collection(`rounds/${round}/submissions1`).doc(user.uid).update(updateMap);
+  db.collection(`rounds/${round}/submissions`).doc(user.uid).update(updateMap);
 };

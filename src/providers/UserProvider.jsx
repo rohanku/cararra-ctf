@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import { auth, db, round } from "../services/firebase";
+import { auth, db } from "../services/firebase";
 import { Route, Redirect } from "react-router-dom";
 import Loading from "../components/Loading";
 import { GlobalContext } from "./GlobalProvider";
@@ -20,7 +20,7 @@ class UserProvider extends Component {
     auth.onAuthStateChanged((userAuth) => {
       this.setState({ user: userAuth });
       if (userAuth) {
-        db.collection(`rounds/${round}/users`)
+        db.collection(`users`)
           .doc(userAuth.uid)
           .onSnapshot((doc) => {
             this.setState({ doc: doc });
