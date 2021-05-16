@@ -52,7 +52,10 @@ export default function Leaderboard() {
   });
   users.sort(function (x, y) {
     if (y.score === x.score && x.solvedChallenges.length > 0) {
-      return x.solvedChallenges[x.solvedChallenges.length - 1].timestamp - y.solvedChallenges[y.solvedChallenges.length - 1].timestamp;
+      return (
+        x.solvedChallenges[x.solvedChallenges.length - 1].timestamp -
+        y.solvedChallenges[y.solvedChallenges.length - 1].timestamp
+      );
     }
     return y.score - x.score;
   });
@@ -71,34 +74,32 @@ export default function Leaderboard() {
       return;
     }
     rows.push(
-      createData(index, index+1, user.username, user.score, user.uid)
+      createData(index, index + 1, user.username, user.score, user.uid)
     );
   });
   let winnerrows = [];
 
   if (data.ended) {
     winners.sort(function (x, y) {
-      if (y.finalScore === x.finalScore && x.solvedChallenges.length > 0) {
-        return x.solvedChallenges[x.finalChallenge].timestamp - y.solvedChallenges[y.finalChallenge].timestamp;
+      if (!y.finalScore) {
+        if (!x.finalScore) return 0;
+        return -1;
+      } else if (!x.finalScore) {
+        return 1;
       }
-      return y.score - x.score;
+      if (y.finalScore === x.finalScore && x.solvedChallenges.length > 0) {
+        return (
+          x.solvedChallenges[x.finalChallenge].timestamp -
+          y.solvedChallenges[y.finalChallenge].timestamp
+        );
+      }
+      return y.finalScore - x.finalScore;
     });
 
-    //let currScore = 1000000000;
-    //let currRank = 0;
     winners.forEach((user, index) => {
-      /*
-      if (user.score < currScore) {
-        currRank += 1;
-        currScore = user.score;
-      }
-      replace index+1 with currRank to have same rank with ties
-      */
-      if (user.score === 0) {
-        return;
-      }
+      if (user.finalScore === 0) return;
       winnerrows.push(
-        createData(index, index+1, user.username, user.score, user.uid)
+        createData(index, index + 1, user.username, user.finalScore, user.uid)
       );
     });
     winnerrows = winnerrows.slice(0, 5);
@@ -117,60 +118,66 @@ export default function Leaderboard() {
   }
   return (
     <React.Fragment>
-    {data.ended ? 
-    <Container maxWidth="lg" className={classes.container}>
-      <Paper className={classes.paper}>
-        <React.Fragment>
-          <Title>Round {round} Winners</Title>
-        <Typography color="textSecondary" className={classes.depositContext}>
-          April 27, 2021 to May 15, 2021
-        </Typography>
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell>Rank</TableCell>
-                <TableCell>Username</TableCell>
-                <TableCell align="right">Score</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {winnerrows.map((row) => (
-                <TableRow key={row.id} selected={uid===row.uid}>
-                  <TableCell>{row.rank}</TableCell>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell align="right">{row.score}</TableCell>
+      {data.ended ? (
+        <Container maxWidth="lg" className={classes.container}>
+          <Paper className={classes.paper}>
+            <React.Fragment>
+              <Title>Round {round} Winners</Title>
+              <Typography
+                color="textSecondary"
+                className={classes.depositContext}
+              >
+                April 27, 2021 to May 15, 2021
+              </Typography>
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Rank</TableCell>
+                    <TableCell>Username</TableCell>
+                    <TableCell align="right">Score</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {winnerrows.map((row) => (
+                    <TableRow key={row.id} selected={uid === row.uid}>
+                      <TableCell>{row.rank}</TableCell>
+                      <TableCell>{row.name}</TableCell>
+                      <TableCell align="right">{row.score}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </React.Fragment>
+          </Paper>
+        </Container>
+      ) : (
+        <div />
+      )}
+      <Container maxWidth="lg" className={classes.container}>
+        <Paper className={classes.paper}>
+          <React.Fragment>
+            <Title>Live Leaderboard</Title>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Rank</TableCell>
+                  <TableCell>Username</TableCell>
+                  <TableCell align="right">Score</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </React.Fragment>
-      </Paper>
-    </Container> : <div/>}
-    <Container maxWidth="lg" className={classes.container}>
-      <Paper className={classes.paper}>
-        <React.Fragment>
-          <Title>Live Leaderboard</Title>
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell>Rank</TableCell>
-                <TableCell>Username</TableCell>
-                <TableCell align="right">Score</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.id} selected={uid === row.uid}>
-                  <TableCell>{row.rank}</TableCell>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell align="right">{row.score}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </React.Fragment>
-      </Paper>
-    </Container>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.id} selected={uid === row.uid}>
+                    <TableCell>{row.rank}</TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell align="right">{row.score}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </React.Fragment>
+        </Paper>
+      </Container>
     </React.Fragment>
   );
 }
