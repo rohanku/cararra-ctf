@@ -19,6 +19,9 @@ class LeaderboardProvider extends Component {
       querySnapshot.docChanges().forEach((change) => {
         let doc = change.doc;
         let data = doc.data();
+        if (data.username === "DefyGG") {
+        console.log(data);
+        }
         this.setState((state) => {
           state.users[doc.id] = data;
           let uid = this.context.user.uid;

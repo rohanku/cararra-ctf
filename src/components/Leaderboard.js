@@ -49,6 +49,7 @@ export default function Leaderboard() {
     map[uid].uid = uid;
     users.push(map[uid]);
     winners.push(map[uid]);
+    if(map[uid].username === "DefyGG") console.log(map[uid].finalScore);
   });
   users.sort(function (x, y) {
     if (y.score === x.score && x.solvedChallenges.length > 0) {
@@ -76,25 +77,21 @@ export default function Leaderboard() {
   let winnerrows = [];
 
   if (data.ended) {
-    winners.sort(function (x, y) {
-      if (y.finalScore === x.finalScore && x.solvedChallenges.length > 0) {
-        return x.solvedChallenges[x.finalChallenge].timestamp - y.solvedChallenges[y.finalChallenge].timestamp;
+    winners.sort(function (x,y) {
+      if (!y.finalScore) {
+        if(!x.finalScore)
+          return 0
+        return -1
+      } else if (!x.finalScore) {
+        return 1;
       }
       return y.finalScore - x.finalScore;
     });
+    console.log(winners);
 
-    //let currScore = 1000000000;
-    //let currRank = 0;
     winners.forEach((user, index) => {
-      /*
-      if (user.score < currScore) {
-        currRank += 1;
-        currScore = user.score;
-      }
-      replace index+1 with currRank to have same rank with ties
-      */
-    if (user.score === 0)
-      return;
+      if (user.finalScore === 0)
+        return;
       winnerrows.push(
         createData(index, index+1, user.username, user.finalScore, user.uid)
       );
