@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import { db } from "../services/firebase";
+import { db, round } from "../services/firebase";
 
 export const GlobalContext = createContext({ data: null });
 
@@ -12,13 +12,13 @@ class GlobalProvider extends Component {
     };
   }
   componentDidMount() {
-    db.collection("globals")
+    db.collection(`rounds/${round}/globals`)
       .doc("data")
       .get()
       .then((doc) => {
         this.setState({ data: doc.data() });
       });
-    db.collection("globals/data/challenges")
+    db.collection(`rounds/${round}/globals/data/challenges`)
       .orderBy("order", "desc")
       .get()
       .then((querySnapshot) => {

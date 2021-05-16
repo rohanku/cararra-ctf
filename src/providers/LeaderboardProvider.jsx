@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import { db } from "../services/firebase";
+import { db, round } from "../services/firebase";
 import { UserContext } from "./UserProvider";
 
 export const LeaderboardContext = createContext({ users: {} });
@@ -15,7 +15,7 @@ class LeaderboardProvider extends Component {
     };
   }
   componentDidMount() {
-    db.collection("leaderboard").onSnapshot((querySnapshot) => {
+    db.collection(`rounds/${round}/leaderboard`).onSnapshot((querySnapshot) => {
       querySnapshot.docChanges().forEach((change) => {
         let doc = change.doc;
         let data = doc.data();
