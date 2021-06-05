@@ -127,7 +127,7 @@ export default function Leaderboard() {
                 color="textSecondary"
                 className={classes.depositContext}
               >
-                April 27, 2021 to May 15, 2021
+                May 16, 2021 to June 4, 2021
               </Typography>
               <Table size="small">
                 <TableHead>
