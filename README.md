@@ -1,5 +1,3 @@
-# Cararra Capture The Flag
+# CararraCTF
 
-React + Firebase client for submitting daily problems on algorithms and cybersecurity and climbing a live leaderboard, around 200 total users.
-
-Site: [https://cararra-ctf.netlify.app](https://cararra-ctf.netlify.app)
+An [archive](https://cararra-ctf.netlify.app/) of around 100 challenges centered around algorithms, cybersecurity, and other miscellaneous computer science challenges. Built with React.js, Cloud Firestore, and Node.js and deployed using Netlify. Served around 200 total users.
